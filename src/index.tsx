@@ -45,6 +45,14 @@ export class ProductConfigurator extends React.Component<props, state> {
         this.state = {
             currentSelection: currentSelection,
         };
+
+        this.updateSelection = this.updateSelection.bind(this);
+    }
+
+    updateSelection(category: string, item: Item) {
+        const state = this.state;
+        state.currentSelection[category] = item;
+        this.setState(state);
     }
 
     render() {
