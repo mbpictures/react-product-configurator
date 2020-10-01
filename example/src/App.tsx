@@ -22,7 +22,7 @@ const App = () => {
         {
             name: "Case",
             thumbnail: CaseDefault,
-            layer: 1,
+            layer: 0,
             items: [
                     {
                         name: "Default",
@@ -54,7 +54,7 @@ const App = () => {
         {
             name: "Belt",
             thumbnail: BeltDefault,
-            layer: 0,
+            layer: 1,
             items: [
                 {
                     name: "Default",
