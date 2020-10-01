@@ -26,6 +26,7 @@ interface props {
     name: string;
     onBack?: () => any;
     onBuy?: (items: ItemConfiguration[]) => any;
+    preloadImages?: boolean;
     categories: Category[];
 }
 
@@ -49,6 +50,21 @@ export class ProductConfigurator extends React.Component<props, state> {
         };
 
         this.updateSelection = this.updateSelection.bind(this);
+    }
+
+    componentDidMount() {
+        if (this.props.preloadImages) {
+            this.props.categories.forEach((cat: Category) => {
+                cat.items.forEach((item: Item) => {
+                    const img = new Image();
+                    img.src = item.image;
+                    if (item.thumbnail) {
+                        const thumb = new Image();
+                        thumb.src = item.thumbnail;
+                    }
+                });
+            });
+        }
     }
 
     updateSelection(category: string, item: Item) {
