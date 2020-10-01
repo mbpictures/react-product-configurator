@@ -67,8 +67,19 @@ export class ProductConfigurator extends React.Component<props, state> {
                     categories={this.props.categories}
                     onChangeSelection={this.updateSelection}
                     name={this.props.name}
+                    price={this.calculatePrice()}
                 />
             </div>
         );
+    }
+
+    calculatePrice(): number {
+        let price: number = 0;
+        Object.entries(this.state.currentSelection).forEach(
+            (val: [string, Item]) => {
+                price += val[1].price ?? 0;
+            }
+        );
+        return price;
     }
 }

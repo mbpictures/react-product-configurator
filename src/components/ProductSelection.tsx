@@ -9,6 +9,7 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import IconButton from "@material-ui/core/IconButton";
 import List from "@material-ui/core/List";
 import { ProductCategory } from "./ProductCategory";
+import {Price} from "./Price";
 
 const drawerWidth = 400;
 
@@ -57,6 +58,7 @@ interface props {
     categories: Category[];
     onChangeSelection: (categoryName: string, item: Item) => any;
     name: string;
+    price: number;
     window?: () => Window;
 }
 
@@ -99,6 +101,7 @@ export function ProductSelection(props: props) {
             </div>
             <Divider />
             <List>{categories}</List>
+            <Price price={props.price} />
         </div>
     );
 
