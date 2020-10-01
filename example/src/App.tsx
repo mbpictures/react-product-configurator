@@ -116,7 +116,7 @@ const App = () => {
             ]
         },
     ];
-    return <ProductConfigurator name="Hi!" categories={cats} />
+    return <ProductConfigurator name="Backpack" categories={cats} />
 }
 
 export default App
