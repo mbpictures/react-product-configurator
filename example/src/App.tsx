@@ -24,32 +24,32 @@ const App = () => {
             thumbnail: CaseDefault,
             layer: 0,
             items: [
-                    {
-                        name: "Default",
-                        color: "#444444",
-                        price: 10.99,
-                        image: CaseDefault,
-                        default: true
-                    },
-                    {
-                        name: "Red",
-                        color: "#a42020",
-                        price: 15.99,
-                        image: CaseRed
-                    },
-                    {
-                        name: "Blue",
-                        color: "#1f47ae",
-                        price: 15.99,
-                        image: CaseBlue
-                    },
-                    {
-                        name: "Green",
-                        color: "#4a924a",
-                        price: 15.99,
-                        image: CaseGreen
-                    }
-                ]
+                {
+                    name: "Default",
+                    color: "#444444",
+                    price: 10.99,
+                    image: CaseDefault,
+                    default: true
+                },
+                {
+                    name: "Red",
+                    color: "#a42020",
+                    price: 15.99,
+                    image: CaseRed
+                },
+                {
+                    name: "Blue",
+                    color: "#1f47ae",
+                    price: 15.99,
+                    image: CaseBlue
+                },
+                {
+                    name: "Green",
+                    color: "#4a924a",
+                    price: 15.99,
+                    image: CaseGreen
+                }
+            ]
         },
         {
             name: "Belt",
