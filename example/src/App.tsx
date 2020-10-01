@@ -26,26 +26,26 @@ const App = () => {
             items: [
                     {
                         name: "Default",
-                        thumbnail: CaseDefault,
+                        color: "#444444",
                         price: 10.99,
                         image: CaseDefault,
                         default: true
                     },
                     {
                         name: "Red",
-                        thumbnail: CaseRed,
+                        color: "#FF2222",
                         price: 15.99,
                         image: CaseRed
                     },
                     {
                         name: "Blue",
-                        thumbnail: CaseBlue,
+                        color: "#2222FF",
                         price: 15.99,
                         image: CaseBlue
                     },
                     {
                         name: "Green",
-                        thumbnail: CaseGreen,
+                        color: "#22FF22",
                         price: 15.99,
                         image: CaseGreen
                     }
@@ -58,26 +58,26 @@ const App = () => {
             items: [
                 {
                     name: "Default",
-                    thumbnail: BeltDefault,
+                    color: "#444444",
                     price: 10.99,
                     default: true,
                     image: BeltDefault
                 },
                 {
                     name: "Red",
-                    thumbnail: BeltRed,
+                    color: "#FF2222",
                     price: 15.99,
                     image: BeltRed
                 },
                 {
                     name: "Blue",
-                    thumbnail: BeltBlue,
+                    color: "#2222FF",
                     price: 15.99,
                     image: BeltBlue
                 },
                 {
                     name: "Green",
-                    thumbnail: BeltGreen,
+                    color: "#22FF22",
                     price: 15.99,
                     image: BeltGreen
                 }
@@ -90,26 +90,26 @@ const App = () => {
             items: [
                 {
                     name: "Default",
-                    thumbnail: HandleDefault,
+                    color: "#444444",
                     price: 10.99,
                     default: true,
                     image: HandleDefault
                 },
                 {
                     name: "Red",
-                    thumbnail: HandleRed,
+                    color: "#FF2222",
                     price: 15.99,
                     image: HandleRed
                 },
                 {
                     name: "Blue",
-                    thumbnail: HandleBlue,
+                    color: "#2222FF",
                     price: 15.99,
                     image: HandleBlue
                 },
                 {
                     name: "Green",
-                    thumbnail: HandleGreen,
+                    color: "#22FF22",
                     price: 15.99,
                     image: HandleGreen
                 }
