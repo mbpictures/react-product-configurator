@@ -40,8 +40,8 @@ export class ProductConfigurator extends React.Component<props, state> {
         const currentSelection = {};
         this.props.categories.forEach((val) => {
             val.items.forEach((item) => {
-                if (!item.default) return;
                 if (!item.layer && val.layer) item.layer = val.layer;
+                if (!item.default) return;
                 currentSelection[val.name] = item;
             });
         });
