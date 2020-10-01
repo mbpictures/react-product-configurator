@@ -33,19 +33,19 @@ const App = () => {
                     },
                     {
                         name: "Red",
-                        color: "#FF2222",
+                        color: "#a42020",
                         price: 15.99,
                         image: CaseRed
                     },
                     {
                         name: "Blue",
-                        color: "#2222FF",
+                        color: "#1f47ae",
                         price: 15.99,
                         image: CaseBlue
                     },
                     {
                         name: "Green",
-                        color: "#22FF22",
+                        color: "#4a924a",
                         price: 15.99,
                         image: CaseGreen
                     }
@@ -65,19 +65,19 @@ const App = () => {
                 },
                 {
                     name: "Red",
-                    color: "#FF2222",
+                    color: "#a42020",
                     price: 15.99,
                     image: BeltRed
                 },
                 {
                     name: "Blue",
-                    color: "#2222FF",
+                    color: "#1f47ae",
                     price: 15.99,
                     image: BeltBlue
                 },
                 {
                     name: "Green",
-                    color: "#22FF22",
+                    color: "#4a924a",
                     price: 15.99,
                     image: BeltGreen
                 }
@@ -97,19 +97,19 @@ const App = () => {
                 },
                 {
                     name: "Red",
-                    color: "#FF2222",
+                    color: "#a42020",
                     price: 15.99,
                     image: HandleRed
                 },
                 {
                     name: "Blue",
-                    color: "#2222FF",
+                    color: "#1f47ae",
                     price: 15.99,
                     image: HandleBlue
                 },
                 {
                     name: "Green",
-                    color: "#22FF22",
+                    color: "#4a924a",
                     price: 15.99,
                     image: HandleGreen
                 }
