@@ -7,7 +7,7 @@ export type ItemConfiguration = { [keys: string]: string | number };
 
 export interface Item {
     name: string;
-    price: number;
+    price?: number;
     image: string;
     thumbnail?: string;
     color?: string;
