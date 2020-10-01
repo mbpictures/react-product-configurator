@@ -118,10 +118,10 @@ export function ProductSelection(props: props) {
                 <Hidden lgUp implementation="css">
                     <Drawer
                         container={container}
-                        variant="persistent"
+                        variant="temporary"
                         anchor="right"
                         open={mobileOpen}
-                        onClose={handleDrawerToggle}
+                        onClose={handleDrawerClose}
                         classes={{
                             paper: classes.drawerPaper,
                         }}
