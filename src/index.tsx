@@ -1,5 +1,7 @@
 import * as React from "react";
 import { ProductPreview } from "./components/preview";
+import { ProductSelection } from "./components/ProductSelection";
+import style from "./styles/Main.scss";
 
 export type ItemConfiguration = { [keys: string]: string | number };
 
@@ -57,7 +59,16 @@ export class ProductConfigurator extends React.Component<props, state> {
 
     render() {
         return (
-            <ProductPreview currentSelection={this.state.currentSelection} />
+            <div className={style.page}>
+                <ProductPreview
+                    currentSelection={this.state.currentSelection}
+                />
+                <ProductSelection
+                    categories={this.props.categories}
+                    onChangeSelection={this.updateSelection}
+                    name={this.props.name}
+                />
+            </div>
         );
     }
 }
