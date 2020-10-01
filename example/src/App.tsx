@@ -116,7 +116,7 @@ const App = () => {
             ]
         },
     ];
-    return <ProductConfigurator name="Backpack" categories={cats} />
+    return <ProductConfigurator name="Backpack" categories={cats} preloadImages />
 }
 
 export default App
