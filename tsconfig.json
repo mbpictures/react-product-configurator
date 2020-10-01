@@ -1,8 +1,10 @@
 {
   "compilerOptions": {
     "outDir": "dist",
+    "declaration": true,
     "module": "esnext",
-    "lib": ["dom", "esnext"],
+    "target": "es5",
+    "lib": ["es6", "dom"],
     "moduleResolution": "node",
     "jsx": "react",
     "sourceMap": true,
