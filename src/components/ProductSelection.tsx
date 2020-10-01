@@ -128,9 +128,6 @@ export function ProductSelection(props: props) {
                         ModalProps={{
                             keepMounted: true, // Better open performance on mobile.
                         }}
-                        PaperProps={{
-                            elevation: 30,
-                        }}
                     >
                         {drawer}
                     </Drawer>
