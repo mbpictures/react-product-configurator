@@ -11,4 +11,20 @@
     span {
         margin: 0 5px;
     }
+
+    .play {
+        animation: price-animation 0.2s ease;
+    }
+
+    @keyframes price-animation {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.2);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
 }
