@@ -50,6 +50,7 @@ const useStyles = makeStyles((theme: Theme) =>
         drawerPaper: {
             width: drawerWidth,
             boxShadow: "-3px 0px 29px 6px rgba(0,0,0,0.35)",
+            overflowX: "hidden",
         },
         drawerContent: {
             display: "flex",
