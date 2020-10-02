@@ -9,7 +9,7 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import IconButton from "@material-ui/core/IconButton";
 import List from "@material-ui/core/List";
 import { ProductCategory } from "./ProductCategory";
-import {Price} from "./Price";
+import {PriceBuy} from "./PriceBuy";
 
 const drawerWidth = 400;
 
@@ -51,6 +51,17 @@ const useStyles = makeStyles((theme: Theme) =>
             width: drawerWidth,
             boxShadow: "-3px 0px 29px 6px rgba(0,0,0,0.35)",
         },
+        drawerContent: {
+            display: "flex",
+            flexDirection: "column",
+            flexGrow: 1,
+            justifyContent: "space-between",
+        },
+        drawerMain: {
+            display: "flex",
+            height: "100%",
+            flexDirection: "column",
+        },
     })
 );
 
@@ -59,6 +70,7 @@ interface props {
     onChangeSelection: (categoryName: string, item: Item) => any;
     name: string;
     price: number;
+    onBuy: () => any;
     window?: () => Window;
 }
 
@@ -89,7 +101,7 @@ export function ProductSelection(props: props) {
     ));
 
     const drawer = (
-        <div>
+        <div className={classes.drawerMain}>
             <div className={classes.drawerHeader}>
                 <IconButton
                     onClick={handleDrawerClose}
@@ -100,8 +112,10 @@ export function ProductSelection(props: props) {
                 {props.name}
             </div>
             <Divider />
-            <List>{categories}</List>
-            <Price price={props.price} />
+            <div className={classes.drawerContent}>
+                <List>{categories}</List>
+                <PriceBuy price={props.price} onBuy={props.onBuy} />
+            </div>
         </div>
     );
 

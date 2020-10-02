@@ -2,8 +2,10 @@ import * as React from "react";
 import { ProductPreview } from "./components/preview";
 import { ProductSelection } from "./components/ProductSelection";
 import style from "./styles/Main.scss";
+import { ConfirmBuyDialog } from "./components/ConfirmBuyDialog";
 
-export type ItemConfiguration = { [keys: string]: string | number };
+export type ItemConfiguration = { [keys: string]: Item };
+export type BuyCallback = (items: ItemConfiguration) => any;
 
 export interface Item {
     name: string;
@@ -25,16 +27,20 @@ export interface Category {
 interface props {
     name: string;
     onBack?: () => any;
-    onBuy?: (items: ItemConfiguration[]) => any;
+    onBuy?: BuyCallback;
+    onAbortBuy?: () => any;
+    onPrivacyPolicy?: () => any;
     preloadImages?: boolean;
     categories: Category[];
 }
 
 interface state {
-    currentSelection: { [keys: string]: Item };
+    currentSelection: ItemConfiguration;
 }
 
 export class ProductConfigurator extends React.Component<props, state> {
+    private readonly confirmBuyDialog: React.RefObject<ConfirmBuyDialog>;
+
     constructor(props: props) {
         super(props);
         const currentSelection = {};
@@ -50,6 +56,9 @@ export class ProductConfigurator extends React.Component<props, state> {
         };
 
         this.updateSelection = this.updateSelection.bind(this);
+        this.handleBuyClick = this.handleBuyClick.bind(this);
+
+        this.confirmBuyDialog = React.createRef<ConfirmBuyDialog>();
     }
 
     componentDidMount() {
@@ -73,6 +82,14 @@ export class ProductConfigurator extends React.Component<props, state> {
         this.setState(state);
     }
 
+    handleBuyClick(): void {
+        if (
+            this.confirmBuyDialog !== null &&
+            this.confirmBuyDialog.current !== null
+        )
+            this.confirmBuyDialog.current.open();
+    }
+
     render() {
         return (
             <div className={style.page}>
@@ -84,6 +101,14 @@ export class ProductConfigurator extends React.Component<props, state> {
                     onChangeSelection={this.updateSelection}
                     name={this.props.name}
                     price={this.calculatePrice()}
+                    onBuy={this.handleBuyClick}
+                />
+                <ConfirmBuyDialog
+                    ref={this.confirmBuyDialog}
+                    currentSelection={this.state.currentSelection}
+                    onConfirm={this.props.onBuy}
+                    onAbort={this.props.onAbortBuy}
+                    onPrivacyPolicy={this.props.onPrivacyPolicy}
                 />
             </div>
         );

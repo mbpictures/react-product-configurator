@@ -1,0 +1,32 @@
+.dialog {
+    min-width: 400px;
+
+    .content {
+        display: flex;
+        flex-direction: row;
+        min-height: 50vh;
+        justify-content: center;
+        align-items: stretch;
+
+        .product-preview {
+            min-width: 50%;
+            flex-grow: 4;
+        }
+
+        .description {
+            min-width: 200px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            flex-grow: 1;
+
+            .buttons {
+                width: 100%;
+
+                button {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

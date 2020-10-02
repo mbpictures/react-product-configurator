@@ -1,19 +1,34 @@
-.price {
+.price-box {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    bottom: 0;
+    position: relative;
+    //bottom: 0;
     width: 100%;
     height: 50px;
     z-index: 5000;
+    flex-direction: column;
+    padding: 20px 0;
+    background-color: #dbdbdb;
 
-    span {
-        margin: 0 5px;
+    .price {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 5px;
+
+        > span {
+            margin: 0 5px;
+        }
     }
 
     .play {
         animation: price-animation 0.2s ease;
+    }
+
+    .buy {
+        min-width: 50%;
+        box-sizing: border-box;
     }
 
     @keyframes price-animation {
