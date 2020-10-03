@@ -7,6 +7,8 @@ import { ConfirmBuyDialog } from "./components/ConfirmBuyDialog";
 export type ItemConfiguration = { [keys: string]: Item };
 export type BuyCallback = (items: ItemConfiguration) => any;
 
+export { ProductPreview } from "./components/preview";
+
 export interface Item {
     name: string;
     price?: number;
