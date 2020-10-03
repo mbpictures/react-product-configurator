@@ -9,7 +9,7 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import IconButton from "@material-ui/core/IconButton";
 import List from "@material-ui/core/List";
 import { ProductCategory } from "./ProductCategory";
-import {PriceBuy} from "./PriceBuy";
+import { PriceBuy } from "./PriceBuy";
 
 const drawerWidth = 400;
 
@@ -52,11 +52,26 @@ const useStyles = makeStyles((theme: Theme) =>
             boxShadow: "-3px 0px 29px 6px rgba(0,0,0,0.35)",
             overflowX: "hidden",
         },
-        drawerContent: {
-            display: "flex",
-            flexDirection: "column",
+        holder: {
             flexGrow: 1,
-            justifyContent: "space-between",
+        },
+        outerDrawerContent: {
+            display: "flex",
+            height: "100%",
+            justifyContent: "center",
+        },
+        drawerContent: {
+            boxSizing: "border-box",
+            alignSelf: "center",
+            display: "flex",
+            flexFlow: "column",
+            height: "100px", // value is not relevant, it just enables scrolling of the list
+            flex: "1", // expand elements horizontally
+            minHeight: "100%", // ensure the usage of the full height
+        },
+        drawerItems: {
+            flex: "1",
+            overflowY: "auto",
         },
         drawerMain: {
             display: "flex",
@@ -113,9 +128,15 @@ export function ProductSelection(props: props) {
                 {props.name}
             </div>
             <Divider />
-            <div className={classes.drawerContent}>
-                <List>{categories}</List>
-                <PriceBuy price={props.price} onBuy={props.onBuy} />
+            <div className={classes.holder}>
+                <div className={classes.outerDrawerContent}>
+                    <div className={classes.drawerContent}>
+                        <List className={classes.drawerItems}>
+                            {categories}
+                        </List>
+                        <PriceBuy price={props.price} onBuy={props.onBuy} />
+                    </div>
+                </div>
             </div>
         </div>
     );
