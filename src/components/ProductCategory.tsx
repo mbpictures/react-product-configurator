@@ -1,6 +1,6 @@
 import { Category, Item } from "../index";
 import React from "react";
-import { createStyles, ListItemText } from "@material-ui/core";
+import {createStyles, ListItemText, Theme} from "@material-ui/core";
 import ListItem from "@material-ui/core/ListItem";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Drawer from "@material-ui/core/Drawer";
@@ -18,13 +18,16 @@ interface props {
     window?: () => Window;
 }
 
-const useStyles = makeStyles(() =>
+const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         listItem: {
             height: "80px",
         },
         drawerPaper: {
-            width: (props: props) => props.drawerWidth,
+            width: "80%",
+            [theme.breakpoints.up("lg")]: {
+                width: (props: props) => props.drawerWidth,
+            },
         },
         closeButton: {
             position: "absolute",

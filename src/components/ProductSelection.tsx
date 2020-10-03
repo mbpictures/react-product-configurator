@@ -48,7 +48,10 @@ const useStyles = makeStyles((theme: Theme) =>
             alignItems: "center",
         },
         drawerPaper: {
-            width: drawerWidth,
+            width: "80%",
+            [theme.breakpoints.up("lg")]: {
+                width: drawerWidth,
+            },
             boxShadow: "-3px 0px 29px 6px rgba(0,0,0,0.35)",
             overflowX: "hidden",
         },
