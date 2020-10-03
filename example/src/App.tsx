@@ -1,8 +1,8 @@
 import React from 'react'
 
-import { ProductConfigurator } from 'react-product-configurator'
+import { ProductConfigurator, ProductPreview } from 'react-product-configurator'
 import 'react-product-configurator/dist/index.css'
-import {Category} from "../../src";
+import {Category, ItemConfiguration} from "../../src";
 
 import CaseDefault from "./img/thumbnail-case.png";
 import CaseRed from "./img/case/case-red.png";
@@ -16,107 +16,152 @@ import HandleDefault from "./img/handle/handle-default.png";
 import HandleRed from "./img/handle/handle-red.png";
 import HandleBlue from "./img/handle/handle-blue.png";
 import HandleGreen from "./img/handle/handle-green.png";
+import ReactJson from "react-json-view";
 
-const App = () => {
-    let cats: Category[] = [
-        {
-            name: "Case",
-            thumbnail: CaseDefault,
-            layer: 0,
-            items: [
-                {
-                    name: "Default",
-                    color: "#444444",
-                    price: 10.99,
-                    image: CaseDefault,
-                    default: true
-                },
-                {
-                    name: "Red",
-                    color: "#a42020",
-                    price: 15.99,
-                    image: CaseRed
-                },
-                {
-                    name: "Blue",
-                    color: "#1f47ae",
-                    price: 15.99,
-                    image: CaseBlue
-                },
-                {
-                    name: "Green",
-                    color: "#4a924a",
-                    price: 15.99,
-                    image: CaseGreen
-                }
-            ]
-        },
-        {
-            name: "Belt",
-            thumbnail: BeltDefault,
-            layer: 1,
-            items: [
-                {
-                    name: "Default",
-                    color: "#444444",
-                    price: 10.99,
-                    default: true,
-                    image: BeltDefault
-                },
-                {
-                    name: "Red",
-                    color: "#a42020",
-                    price: 15.99,
-                    image: BeltRed
-                },
-                {
-                    name: "Blue",
-                    color: "#1f47ae",
-                    price: 15.99,
-                    image: BeltBlue
-                },
-                {
-                    name: "Green",
-                    color: "#4a924a",
-                    price: 15.99,
-                    image: BeltGreen
-                }
-            ]
-        },
-        {
-            name: "Handle",
-            thumbnail: HandleDefault,
-            layer: 2,
-            items: [
-                {
-                    name: "Default",
-                    color: "#444444",
-                    price: 10.99,
-                    default: true,
-                    image: HandleDefault
-                },
-                {
-                    name: "Red",
-                    color: "#a42020",
-                    price: 15.99,
-                    image: HandleRed
-                },
-                {
-                    name: "Blue",
-                    color: "#1f47ae",
-                    price: 15.99,
-                    image: HandleBlue
-                },
-                {
-                    name: "Green",
-                    color: "#4a924a",
-                    price: 15.99,
-                    image: HandleGreen
-                }
-            ]
-        },
-    ];
-    return <ProductConfigurator name="Backpack" categories={cats} preloadImages />
+interface state {
+    bought: boolean;
+    boughtItem: ItemConfiguration;
+}
+
+class App extends React.Component<any, state> {
+
+    constructor(props: any) {
+        super(props);
+        this.state = {
+            bought: false,
+            boughtItem: {},
+        }
+
+        this.onBuy = this.onBuy.bind(this);
+    }
+
+    onBuy(selection: ItemConfiguration) {
+        this.setState({
+            bought: true,
+            boughtItem: selection,
+        });
+    }
+
+    render() {
+        let cats: Category[] = [
+            {
+                name: "Case",
+                thumbnail: CaseDefault,
+                layer: 0,
+                items: [
+                    {
+                        name: "Default",
+                        color: "#444444",
+                        price: 10.99,
+                        image: CaseDefault,
+                        default: true
+                    },
+                    {
+                        name: "Red",
+                        color: "#a42020",
+                        price: 15.99,
+                        image: CaseRed
+                    },
+                    {
+                        name: "Blue",
+                        color: "#1f47ae",
+                        price: 15.99,
+                        image: CaseBlue
+                    },
+                    {
+                        name: "Green",
+                        color: "#4a924a",
+                        price: 15.99,
+                        image: CaseGreen
+                    }
+                ]
+            },
+            {
+                name: "Belt",
+                thumbnail: BeltDefault,
+                layer: 1,
+                items: [
+                    {
+                        name: "Default",
+                        color: "#444444",
+                        price: 10.99,
+                        default: true,
+                        image: BeltDefault
+                    },
+                    {
+                        name: "Red",
+                        color: "#a42020",
+                        price: 15.99,
+                        image: BeltRed
+                    },
+                    {
+                        name: "Blue",
+                        color: "#1f47ae",
+                        price: 15.99,
+                        image: BeltBlue
+                    },
+                    {
+                        name: "Green",
+                        color: "#4a924a",
+                        price: 15.99,
+                        image: BeltGreen
+                    }
+                ]
+            },
+            {
+                name: "Handle",
+                thumbnail: HandleDefault,
+                layer: 2,
+                items: [
+                    {
+                        name: "Default",
+                        color: "#444444",
+                        price: 10.99,
+                        default: true,
+                        image: HandleDefault
+                    },
+                    {
+                        name: "Red",
+                        color: "#a42020",
+                        price: 15.99,
+                        image: HandleRed
+                    },
+                    {
+                        name: "Blue",
+                        color: "#1f47ae",
+                        price: 15.99,
+                        image: HandleBlue
+                    },
+                    {
+                        name: "Green",
+                        color: "#4a924a",
+                        price: 15.99,
+                        image: HandleGreen
+                    }
+                ]
+            },
+        ];
+        if (this.state.bought) {
+            return (
+                <div style={{display: "flex", height: "100%", width: "100%"}}>
+                    <div style={{ width: "66%" }}>
+                        <h1>Product Preview</h1>
+                        <h2>Outside of the product configurator</h2>
+                        <ProductPreview currentSelection={this.state.boughtItem} />
+                    </div>
+                    <div>
+                        <h1>Result JSON:</h1>
+                        <ReactJson src={this.state.boughtItem} />
+                    </div>
+                </div>
+            );
+        }
+        return <ProductConfigurator
+            name="Backpack"
+            categories={cats}
+            preloadImages
+            onBuy={this.onBuy} />;
+    }
 }
 
 export default App
