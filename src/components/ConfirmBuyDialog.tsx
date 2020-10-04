@@ -1,9 +1,11 @@
 import { BuyCallback, Item, ItemConfiguration } from "../index";
-import { Button, Dialog, DialogContent } from "@material-ui/core";
+import { Button, DialogContent, Hidden } from "@material-ui/core";
 import React from "react";
 import { ProductPreview } from "./preview";
 import style from "../styles/ConfirmBuyDialog.scss";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
+import { ResponsiveDialog } from "./ResponsiveDialog";
+import CloseIcon from "@material-ui/icons/Close";
 
 interface props {
     currentSelection: ItemConfiguration;
@@ -57,21 +59,40 @@ export class ConfirmBuyDialog extends React.Component<props, state> {
 
     render() {
         return (
-            <Dialog
+            <ResponsiveDialog
                 open={this.state.open}
                 onClose={this.handleAbort}
                 className={style.dialog}
                 fullWidth
                 maxWidth="md"
             >
+                <Hidden lgUp>
+                    <Button
+                        onClick={this.handleAbort}
+                        className={style.closeButton}
+                    >
+                        <CloseIcon />
+                    </Button>
+                </Hidden>
                 <DialogContent className={style.content}>
-                    <div className={style["product-preview"]}>
-                        <ProductPreview
-                            currentSelection={this.props.currentSelection}
-                        />
-                    </div>
+                    <Hidden mdDown>
+                        <div className={style["product-preview"]}>
+                            <ProductPreview
+                                currentSelection={this.props.currentSelection}
+                            />
+                        </div>
+                    </Hidden>
                     <div className={style.description}>
                         <h1 style={{ margin: "0" }}>Buy</h1>
+                        <Hidden lgUp>
+                            <div className={style["product-preview"]}>
+                                <ProductPreview
+                                    currentSelection={
+                                        this.props.currentSelection
+                                    }
+                                />
+                            </div>
+                        </Hidden>
                         <p>Price: {this.calculatePrice()} &euro;</p>
                         <ButtonGroup size="large" className={style.buttons}>
                             <Button
@@ -100,7 +121,7 @@ export class ConfirmBuyDialog extends React.Component<props, state> {
                         </p>
                     </div>
                 </DialogContent>
-            </Dialog>
+            </ResponsiveDialog>
         );
     }
 }

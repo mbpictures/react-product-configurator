@@ -1,6 +1,16 @@
 .dialog {
     min-width: 400px;
 
+    @media (max-device-width: 400px) {
+        min-width: 100%;
+        max-width: 100%;
+    }
+
+    .closeButton {
+        position: absolute;
+        right: 0;
+    }
+
     .content {
         display: flex;
         flex-direction: row;
