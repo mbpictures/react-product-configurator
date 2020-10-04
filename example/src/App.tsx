@@ -42,6 +42,10 @@ class App extends React.Component<any, state> {
         });
     }
 
+    onPrivacy() {
+        window.open("https://gist.github.com/shinzui/395712", "_bank");
+    }
+
     render() {
         let cats: Category[] = [
             {
@@ -160,7 +164,8 @@ class App extends React.Component<any, state> {
             name="Backpack"
             categories={cats}
             preloadImages
-            onBuy={this.onBuy} />;
+            onBuy={this.onBuy}
+            onPrivacyPolicy={this.onPrivacy} />;
     }
 }
 
