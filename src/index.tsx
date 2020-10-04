@@ -6,6 +6,8 @@ import { ConfirmBuyDialog } from "./components/ConfirmBuyDialog";
 
 export type ItemConfiguration = { [keys: string]: Item };
 export type BuyCallback = (items: ItemConfiguration) => any;
+export type AbortCallback = () => any;
+export type PrivacyCallback = () => any;
 
 export { ProductPreview } from "./components/preview";
 
@@ -30,8 +32,10 @@ interface props {
     name: string;
     // onBack?: () => any;
     onBuy?: BuyCallback;
-    onAbortBuy?: () => any;
-    onPrivacyPolicy?: () => any;
+    displayBackButton?: boolean;
+    backButton?: React.ReactNode;
+    onAbortBuy?: AbortCallback;
+    onPrivacyPolicy?: PrivacyCallback;
     preloadImages?: boolean;
     categories: Category[];
 }
