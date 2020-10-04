@@ -1,4 +1,4 @@
-import { BuyCallback, ItemConfiguration } from "../index";
+import { BuyCallback, Item, ItemConfiguration } from "../index";
 import { Button, Dialog, DialogContent } from "@material-ui/core";
 import React from "react";
 import { ProductPreview } from "./preview";
@@ -47,6 +47,14 @@ export class ConfirmBuyDialog extends React.Component<props, state> {
         if (this.props.onAbort) this.props.onAbort();
     }
 
+    calculatePrice() {
+        let price = 0;
+        Object.values(this.props.currentSelection).forEach(
+            (item: Item) => (price += item.price ?? 0)
+        );
+        return price;
+    }
+
     render() {
         return (
             <Dialog
@@ -64,7 +72,7 @@ export class ConfirmBuyDialog extends React.Component<props, state> {
                     </div>
                     <div className={style.description}>
                         <h1 style={{ margin: "0" }}>Buy</h1>
-                        <p>Price: 14.00 &euro;</p>
+                        <p>Price: {this.calculatePrice()} &euro;</p>
                         <ButtonGroup size="large" className={style.buttons}>
                             <Button
                                 onClick={this.handleAbort}
