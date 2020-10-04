@@ -3,9 +3,11 @@ import { ProductPreview } from "./components/preview";
 import { ProductSelection } from "./components/ProductSelection";
 import style from "./styles/Main.scss";
 import { ConfirmBuyDialog } from "./components/ConfirmBuyDialog";
+import { BackButton } from "./components/BackButton";
 
 export type ItemConfiguration = { [keys: string]: Item };
 export type BuyCallback = (items: ItemConfiguration) => any;
+export type BackCallback = () => any;
 export type AbortCallback = () => any;
 export type PrivacyCallback = () => any;
 
@@ -30,7 +32,7 @@ export interface Category {
 
 interface props {
     name: string;
-    // onBack?: () => any;
+    onBack?: BackCallback;
     onBuy?: BuyCallback;
     displayBackButton?: boolean;
     backButton?: React.ReactNode;
@@ -99,6 +101,11 @@ export class ProductConfigurator extends React.Component<props, state> {
     render() {
         return (
             <div className={style.page}>
+                <BackButton
+                    backButton={this.props.backButton}
+                    displayBackButton={this.props.displayBackButton}
+                    onBack={this.props.onBack}
+                />
                 <ProductPreview
                     currentSelection={this.state.currentSelection}
                 />
