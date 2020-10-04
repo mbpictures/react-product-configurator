@@ -28,7 +28,7 @@ export interface Category {
 
 interface props {
     name: string;
-    onBack?: () => any;
+    // onBack?: () => any;
     onBuy?: BuyCallback;
     onAbortBuy?: () => any;
     onPrivacyPolicy?: () => any;
