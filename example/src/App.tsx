@@ -165,7 +165,9 @@ class App extends React.Component<any, state> {
             categories={cats}
             preloadImages
             onBuy={this.onBuy}
-            onPrivacyPolicy={this.onPrivacy} />;
+            onPrivacyPolicy={this.onPrivacy}
+            displayBackButton
+            onBack={() => console.log("CALLBACK: onBack")}/>;
     }
 }
 
