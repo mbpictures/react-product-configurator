@@ -2,7 +2,7 @@ import { BuyCallback, Item, ItemConfiguration } from "../index";
 import { Button, DialogContent, Hidden } from "@material-ui/core";
 import React from "react";
 import { ProductPreview } from "./preview";
-import style from "../styles/ConfirmBuyDialog.scss";
+import style from "../styles/Summary.scss";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import { ResponsiveDialog } from "./ResponsiveDialog";
 import CloseIcon from "@material-ui/icons/Close";
@@ -18,7 +18,7 @@ interface state {
     open: boolean;
 }
 
-export class ConfirmBuyDialog extends React.Component<props, state> {
+export class SummaryDialog extends React.Component<props, state> {
     constructor(props: props) {
         super(props);
 
@@ -83,7 +83,7 @@ export class ConfirmBuyDialog extends React.Component<props, state> {
                         </div>
                     </Hidden>
                     <div className={style.description}>
-                        <h1 style={{ margin: "0" }}>Buy</h1>
+                        <h1 style={{ margin: "0" }}>Summary</h1>
                         <Hidden lgUp>
                             <div className={style["product-preview"]}>
                                 <ProductPreview

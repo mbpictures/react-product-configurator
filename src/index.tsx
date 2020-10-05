@@ -2,7 +2,7 @@ import * as React from "react";
 import { ProductPreview } from "./components/preview";
 import { ProductSelection } from "./components/ProductSelection";
 import style from "./styles/Main.scss";
-import { ConfirmBuyDialog } from "./components/ConfirmBuyDialog";
+import { SummaryDialog } from "./components/SummaryDialog";
 import { BackButton } from "./components/BackButton";
 
 export type ItemConfiguration = { [keys: string]: Item };
@@ -47,7 +47,7 @@ interface state {
 }
 
 export class ProductConfigurator extends React.Component<props, state> {
-    private readonly confirmBuyDialog: React.RefObject<ConfirmBuyDialog>;
+    private readonly confirmBuyDialog: React.RefObject<SummaryDialog>;
 
     constructor(props: props) {
         super(props);
@@ -66,7 +66,7 @@ export class ProductConfigurator extends React.Component<props, state> {
         this.updateSelection = this.updateSelection.bind(this);
         this.handleBuyClick = this.handleBuyClick.bind(this);
 
-        this.confirmBuyDialog = React.createRef<ConfirmBuyDialog>();
+        this.confirmBuyDialog = React.createRef<SummaryDialog>();
     }
 
     componentDidMount() {
@@ -116,7 +116,7 @@ export class ProductConfigurator extends React.Component<props, state> {
                     price={this.calculatePrice()}
                     onBuy={this.handleBuyClick}
                 />
-                <ConfirmBuyDialog
+                <SummaryDialog
                     ref={this.confirmBuyDialog}
                     currentSelection={this.state.currentSelection}
                     onConfirm={this.props.onBuy}
