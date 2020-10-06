@@ -2,3 +2,10 @@
     height: 100%;
     width: 100%;
 }
+
+.flex-stretch {
+    display: flex;
+    justify-content: space-between!important;
+    width: 80%!important;
+    margin: 5px auto;
+}

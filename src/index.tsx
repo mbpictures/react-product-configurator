@@ -66,6 +66,7 @@ export class ProductConfigurator extends React.Component<props, state> {
 
         this.updateSelection = this.updateSelection.bind(this);
         this.handleBuyClick = this.handleBuyClick.bind(this);
+        this.summaryDialogOnEdit = this.summaryDialogOnEdit.bind(this);
 
         this.confirmBuyDialog = React.createRef<SummaryDialog>();
     }
@@ -99,6 +100,10 @@ export class ProductConfigurator extends React.Component<props, state> {
             this.confirmBuyDialog.current.open();
     }
 
+    summaryDialogOnEdit(category: string): void {
+        this.openSelectionCategory(category);
+    }
+
     render() {
         return (
             <div className={style.page}>
@@ -126,6 +131,7 @@ export class ProductConfigurator extends React.Component<props, state> {
                     onConfirm={this.props.onBuy}
                     onAbort={this.props.onAbortBuy}
                     onPrivacyPolicy={this.props.onPrivacyPolicy}
+                    onEdit={this.summaryDialogOnEdit}
                 />
             </div>
         );

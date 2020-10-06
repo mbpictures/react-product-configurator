@@ -3,15 +3,18 @@ import { Button, DialogContent, Hidden } from "@material-ui/core";
 import React from "react";
 import { ProductPreview } from "./preview";
 import style from "../styles/Summary.scss";
+import mainStyle from "../styles/Main.scss";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import { ResponsiveDialog } from "./ResponsiveDialog";
 import CloseIcon from "@material-ui/icons/Close";
+import { SummaryList } from "./SummaryList";
 
 interface props {
     currentSelection: ItemConfiguration;
     onConfirm?: BuyCallback;
     onAbort?: () => any;
     onPrivacyPolicy?: () => any;
+    onEdit: (category: string) => any;
 }
 
 interface state {
@@ -28,6 +31,7 @@ export class SummaryDialog extends React.Component<props, state> {
 
         this.handleAbort = this.handleAbort.bind(this);
         this.handleBuy = this.handleBuy.bind(this);
+        this.handleOnEdit = this.handleOnEdit.bind(this);
     }
 
     open() {
@@ -47,6 +51,11 @@ export class SummaryDialog extends React.Component<props, state> {
     handleAbort() {
         this.close();
         if (this.props.onAbort) this.props.onAbort();
+    }
+
+    handleOnEdit(category: string) {
+        this.close();
+        this.props.onEdit(category);
     }
 
     calculatePrice() {
@@ -93,7 +102,24 @@ export class SummaryDialog extends React.Component<props, state> {
                                 />
                             </div>
                         </Hidden>
-                        <p>Price: {this.calculatePrice()} &euro;</p>
+                        <SummaryList
+                            itemConfiguration={this.props.currentSelection}
+                            displayEdit
+                            onEdit={this.handleOnEdit}
+                        />
+                        <div
+                            className={mainStyle["flex-stretch"]}
+                            style={{ marginTop: "0" }}
+                        >
+                            <span>
+                                <h3 className={style["total-price"]}>Total</h3>
+                            </span>
+                            <span>
+                                <h3 className={style["total-price"]}>
+                                    {this.calculatePrice()} &euro;
+                                </h3>
+                            </span>
+                        </div>
                         <ButtonGroup size="large" className={style.buttons}>
                             <Button
                                 onClick={this.handleAbort}

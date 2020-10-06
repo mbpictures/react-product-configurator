@@ -30,8 +30,13 @@
             flex-direction: column;
             flex-grow: 1;
 
+            .total-price {
+                margin: 0;
+            }
+
             .buttons {
                 width: 100%;
+                margin-top: 10px;
 
                 button {
                     width: 100%;
