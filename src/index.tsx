@@ -1,6 +1,6 @@
 import * as React from "react";
 import { ProductPreview } from "./components/preview";
-import { ProductSelection } from "./components/ProductSelection";
+import ProductSelection from "./components/ProductSelection";
 import style from "./styles/Main.scss";
 import { SummaryDialog } from "./components/SummaryDialog";
 import { BackButton } from "./components/BackButton";
@@ -48,6 +48,7 @@ interface state {
 
 export class ProductConfigurator extends React.Component<props, state> {
     private readonly confirmBuyDialog: React.RefObject<SummaryDialog>;
+    private openSelectionCategory: (category: any) => any;
 
     constructor(props: props) {
         super(props);
@@ -115,6 +116,9 @@ export class ProductConfigurator extends React.Component<props, state> {
                     name={this.props.name}
                     price={this.calculatePrice()}
                     onBuy={this.handleBuyClick}
+                    setOpenCategory={(openCategory) =>
+                        (this.openSelectionCategory = openCategory)
+                    }
                 />
                 <SummaryDialog
                     ref={this.confirmBuyDialog}
