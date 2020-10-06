@@ -4,6 +4,7 @@ import ProductSelection from "./components/ProductSelection";
 import style from "./styles/Main.scss";
 import { SummaryDialog } from "./components/SummaryDialog";
 import { BackButton } from "./components/BackButton";
+import { LoadingScreen } from "./components/LoadingScreen";
 
 export type ItemConfiguration = { [keys: string]: Item };
 export type BuyCallback = (items: ItemConfiguration) => any;
@@ -39,16 +40,19 @@ interface props {
     onAbortBuy?: AbortCallback;
     onPrivacyPolicy?: PrivacyCallback;
     preloadImages?: boolean;
+    showLoadingScreen?: boolean;
     categories: Category[];
 }
 
 interface state {
     currentSelection: ItemConfiguration;
+    loaded: boolean;
 }
 
 export class ProductConfigurator extends React.Component<props, state> {
     private readonly confirmBuyDialog: React.RefObject<SummaryDialog>;
     private openSelectionCategory: (category: any) => any;
+    private imagesLeftToLoad = 0;
 
     constructor(props: props) {
         super(props);
@@ -62,11 +66,13 @@ export class ProductConfigurator extends React.Component<props, state> {
         });
         this.state = {
             currentSelection: currentSelection,
+            loaded: false,
         };
 
         this.updateSelection = this.updateSelection.bind(this);
         this.handleBuyClick = this.handleBuyClick.bind(this);
         this.summaryDialogOnEdit = this.summaryDialogOnEdit.bind(this);
+        this.handleImageLoaded = this.handleImageLoaded.bind(this);
 
         this.confirmBuyDialog = React.createRef<SummaryDialog>();
     }
@@ -77,13 +83,22 @@ export class ProductConfigurator extends React.Component<props, state> {
                 cat.items.forEach((item: Item) => {
                     const img = new Image();
                     img.src = item.image;
+                    img.addEventListener("load", this.handleImageLoaded);
+                    this.imagesLeftToLoad++;
                     if (item.thumbnail) {
                         const thumb = new Image();
                         thumb.src = item.thumbnail;
+                        thumb.addEventListener("load", this.handleImageLoaded);
+                        this.imagesLeftToLoad++;
                     }
                 });
             });
         }
+    }
+
+    handleImageLoaded() {
+        this.imagesLeftToLoad--;
+        if (this.imagesLeftToLoad <= 0) this.setState({ loaded: true });
     }
 
     updateSelection(category: string, item: Item) {
@@ -105,8 +120,13 @@ export class ProductConfigurator extends React.Component<props, state> {
     }
 
     render() {
+        const loadingScreenVisible =
+            !this.state.loaded &&
+            (this.props.preloadImages ?? false) &&
+            (this.props.showLoadingScreen ?? false);
         return (
             <div className={style.page}>
+                <LoadingScreen visible={loadingScreenVisible} />
                 <BackButton
                     backButton={this.props.backButton}
                     displayBackButton={this.props.displayBackButton}
