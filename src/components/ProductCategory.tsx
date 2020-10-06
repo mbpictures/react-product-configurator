@@ -16,6 +16,7 @@ interface props {
     onItemChange: (category: string, item: Item) => any;
     window?: () => Window;
     classes: any;
+    setOpenSubmenu: (submenu: () => any) => any;
 }
 
 interface state {
@@ -67,6 +68,10 @@ export class ProductCategory extends React.Component<props, state> {
         this.updateItem = this.updateItem.bind(this);
         this.openSubmenu = this.openSubmenu.bind(this);
         this.closeSubmenu = this.closeSubmenu.bind(this);
+    }
+
+    componentDidMount() {
+        this.props.setOpenSubmenu(this.openSubmenu);
     }
 
     toggleSubmenu() {

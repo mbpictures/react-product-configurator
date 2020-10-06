@@ -97,6 +97,7 @@ export function ProductSelection(props: props) {
     const { window } = props;
     const classes = useStyles();
     const [mobileOpen, setMobileOpen] = React.useState(false);
+    const productCategories: Record<string, () => any> = {};
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -104,16 +105,27 @@ export function ProductSelection(props: props) {
     const handleDrawerClose = () => {
         setMobileOpen(false);
     };
+    const handleDrawerOpen = () => {
+        setMobileOpen(true);
+    };
+    const openSpecificCategory = (category: string) => {
+        if (!(category in productCategories)) return;
+        handleDrawerOpen();
+        productCategories[category]();
+    };
 
     const container =
         window !== undefined ? () => window().document.body : undefined;
 
     const categories = props.categories.map((val) => (
         <ProductCategory
+            setOpenSubmenu={(submenu: () => any) =>
+                (productCategories[val.name] = submenu)
+            }
             key={val.name}
             category={val}
             drawerWidth={drawerWidth}
-            onItemChange={(category, item) =>
+            onItemChange={(category: string, item: Item) =>
                 props.onChangeSelection(category, item)
             }
         />
