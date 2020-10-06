@@ -167,7 +167,8 @@ class App extends React.Component<any, state> {
             onBuy={this.onBuy}
             onPrivacyPolicy={this.onPrivacy}
             displayBackButton
-            onBack={() => console.log("CALLBACK: onBack")}/>;
+            showLoadingScreen
+            onBack={() => console.log("CALLBACK: onBack")} />;
     }
 }
 
