@@ -51,6 +51,7 @@ The ProductConfigurator Components comes with three callbacks: onBuy, onAbortBuy
 * ```categories: Category[]```: Description of your product. Here all information like layers, category names, variations, prices, etc. are stored. See [category](#category)
 * ```displayBackButton: boolean (optional)```: Show a "back"-button in the top-left corner. Useful to navigate the user back to your main webpage.
 * ```backButton: React.ReactNode (optional)```: Display a non-default back button. Default icon: ChevronLeft.
+* ```showLoadingScreen: boolean (optional)```: Show loading screen while all images are preloading. This option will only work in combination with "preloadImages", otherwise no loading screen will be shown.
 ### Types
 #### Category
 * ```name: string```: Category name
