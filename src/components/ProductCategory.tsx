@@ -1,6 +1,11 @@
 import { Category, Item } from "../index";
 import React from "react";
-import {createStyles, ListItemText, Theme, withStyles} from "@material-ui/core";
+import {
+    createStyles,
+    ListItemText,
+    Theme,
+    withStyles,
+} from "@material-ui/core";
 import ListItem from "@material-ui/core/ListItem";
 import Drawer from "@material-ui/core/Drawer";
 import IconButton from "@material-ui/core/IconButton";
@@ -16,7 +21,10 @@ interface props {
     onItemChange: (category: string, item: Item) => any;
     window?: () => Window;
     classes: any;
-    setOpenSubmenu: (submenu: () => any) => any;
+    setSubmenuHandlers: (
+        openSubmenu: () => any,
+        closeSubmenu: () => any
+    ) => any;
 }
 
 interface state {
@@ -71,7 +79,7 @@ export class ProductCategory extends React.Component<props, state> {
     }
 
     componentDidMount() {
-        this.props.setOpenSubmenu(this.openSubmenu);
+        this.props.setSubmenuHandlers(this.openSubmenu, this.closeSubmenu);
     }
 
     toggleSubmenu() {
