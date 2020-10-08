@@ -5,6 +5,9 @@ import style from "./styles/Main.scss";
 import { SummaryDialog } from "./components/SummaryDialog";
 import { BackButton } from "./components/BackButton";
 import { LoadingScreen } from "./components/LoadingScreen";
+import { MuiThemeProvider, Theme } from "@material-ui/core";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import { lightTheme, darkTheme } from "./provider/Theme";
 
 export type ItemConfiguration = { [keys: string]: Item };
 export type BuyCallback = (items: ItemConfiguration) => any;
@@ -42,6 +45,7 @@ interface props {
     preloadImages?: boolean;
     showLoadingScreen?: boolean;
     categories: Category[];
+    theme?: "dark" | "light" | Theme;
 }
 
 interface state {
@@ -120,39 +124,48 @@ export class ProductConfigurator extends React.Component<props, state> {
     }
 
     render() {
+        const theme =
+            this.props.theme === undefined || this.props.theme === "light"
+                ? lightTheme
+                : this.props.theme === "dark"
+                ? darkTheme
+                : this.props.theme;
         const loadingScreenVisible =
             !this.state.loaded &&
             (this.props.preloadImages ?? false) &&
             (this.props.showLoadingScreen ?? false);
         return (
             <div className={style.page}>
-                <LoadingScreen visible={loadingScreenVisible} />
-                <BackButton
-                    backButton={this.props.backButton}
-                    displayBackButton={this.props.displayBackButton}
-                    onBack={this.props.onBack}
-                />
-                <ProductPreview
-                    currentSelection={this.state.currentSelection}
-                />
-                <ProductSelection
-                    categories={this.props.categories}
-                    onChangeSelection={this.updateSelection}
-                    name={this.props.name}
-                    price={this.calculatePrice()}
-                    onBuy={this.handleBuyClick}
-                    setOpenCategory={(openCategory) =>
-                        (this.openSelectionCategory = openCategory)
-                    }
-                />
-                <SummaryDialog
-                    ref={this.confirmBuyDialog}
-                    currentSelection={this.state.currentSelection}
-                    onConfirm={this.props.onBuy}
-                    onAbort={this.props.onAbortBuy}
-                    onPrivacyPolicy={this.props.onPrivacyPolicy}
-                    onEdit={this.summaryDialogOnEdit}
-                />
+                <MuiThemeProvider theme={theme}>
+                    <CssBaseline />
+                    <LoadingScreen visible={loadingScreenVisible} />
+                    <BackButton
+                        backButton={this.props.backButton}
+                        displayBackButton={this.props.displayBackButton}
+                        onBack={this.props.onBack}
+                    />
+                    <ProductPreview
+                        currentSelection={this.state.currentSelection}
+                    />
+                    <ProductSelection
+                        categories={this.props.categories}
+                        onChangeSelection={this.updateSelection}
+                        name={this.props.name}
+                        price={this.calculatePrice()}
+                        onBuy={this.handleBuyClick}
+                        setOpenCategory={(openCategory) =>
+                            (this.openSelectionCategory = openCategory)
+                        }
+                    />
+                    <SummaryDialog
+                        ref={this.confirmBuyDialog}
+                        currentSelection={this.state.currentSelection}
+                        onConfirm={this.props.onBuy}
+                        onAbort={this.props.onAbortBuy}
+                        onPrivacyPolicy={this.props.onPrivacyPolicy}
+                        onEdit={this.summaryDialogOnEdit}
+                    />
+                </MuiThemeProvider>
             </div>
         );
     }

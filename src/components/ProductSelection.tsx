@@ -8,7 +8,7 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import IconButton from "@material-ui/core/IconButton";
 import List from "@material-ui/core/List";
 import ProductCategory from "./ProductCategory";
-import { PriceBuy } from "./PriceBuy";
+import PriceBuy from "./PriceBuy";
 
 const drawerWidth = 400;
 

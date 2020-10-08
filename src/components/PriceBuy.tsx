@@ -1,14 +1,21 @@
 import React from "react";
 
 import style from "../styles/Price.scss";
-import { Button } from "@material-ui/core";
+import { Button, Theme, withStyles } from "@material-ui/core";
 
 interface props {
     price: number;
     onBuy: () => any;
+    classes: any;
 }
 
-export class PriceBuy extends React.Component<props> {
+const useStyles = (theme: Theme) => ({
+    box: {
+        background: theme.palette.divider,
+    },
+});
+
+class PriceBuy extends React.Component<props> {
     priceElem: React.RefObject<any>;
     constructor(props: props) {
         super(props);
@@ -31,8 +38,10 @@ export class PriceBuy extends React.Component<props> {
     }
 
     render() {
+        const { classes } = this.props;
+        const buyBoxClasses = style["price-box"] + " " + classes.box;
         return (
-            <div className={style["price-box"]}>
+            <div className={buyBoxClasses}>
                 <div className={style.price}>
                     <span>Price:</span>
                     <span
@@ -55,3 +64,5 @@ export class PriceBuy extends React.Component<props> {
         );
     }
 }
+
+export default withStyles(useStyles)(PriceBuy);
