@@ -168,6 +168,7 @@ class App extends React.Component<any, state> {
             onPrivacyPolicy={this.onPrivacy}
             displayBackButton
             showLoadingScreen
+            theme="light"
             onBack={() => console.log("CALLBACK: onBack")} />;
     }
 }
