@@ -1,7 +1,7 @@
 import React from "react";
-import { Button } from "@material-ui/core";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import style from "../styles/BackButton.scss";
+import { IconButton } from "@material-ui/core";
 
 interface props {
     onBack?: () => any;
@@ -14,15 +14,17 @@ export class BackButton extends React.Component<props, any> {
         if (!this.props.displayBackButton) return null;
         const buttonIcon = this.props.backButton ?? <ChevronLeftIcon />;
         return (
-            <Button
-                onClick={this.props.onBack}
-                className={style["back-button"]}
-                size="large"
-                variant="contained"
-                disableElevation
-            >
-                {buttonIcon}
-            </Button>
+            <div className={style.root}>
+                <IconButton
+                    color="inherit"
+                    aria-label="open drawer"
+                    edge="start"
+                    onClick={this.props.onBack}
+                    className={style["back-button"]}
+                >
+                    {buttonIcon}
+                </IconButton>
+            </div>
         );
     }
 }

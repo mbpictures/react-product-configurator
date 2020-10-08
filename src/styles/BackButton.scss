@@ -1,7 +1,10 @@
-.back-button {
-    position: absolute!important;
-    left: 0;
-    top: 0;
-    border-radius: 0!important;
-    z-index: 100!important;
+.root {
+    display: flex;
+    .back-button {
+        position: absolute!important;
+        left: 12px;
+        top: 0;
+        border-radius: 0!important;
+        z-index: 100!important;
+    }
 }
