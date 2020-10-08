@@ -52,6 +52,7 @@ The ProductConfigurator Components comes with three callbacks: onBuy, onAbortBuy
 * ```displayBackButton: boolean (optional)```: Show a "back"-button in the top-left corner. Useful to navigate the user back to your main webpage.
 * ```backButton: React.ReactNode (optional)```: Display a non-default back button. Default icon: ChevronLeft.
 * ```showLoadingScreen: boolean (optional)```: Show loading screen while all images are preloading. This option will only work in combination with "preloadImages", otherwise no loading screen will be shown.
+* ```theme: "light" | "dark" | Theme (optional)```: Customize the appearance by either a predefined or custom theme. There are currently two predefined themes ("light" and "dark") available. You can also use a custom generated mui theme.
 ### Types
 #### Category
 * ```name: string```: Category name
