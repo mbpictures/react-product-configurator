@@ -37,6 +37,9 @@ const useStyles = (theme: Theme) =>
         listItem: {
             height: "80px",
         },
+        listItemActive: {
+            backgroundColor: theme.palette.divider,
+        },
         drawerPaper: {
             width: "80%",
             [theme.breakpoints.up("lg")]: {
@@ -111,11 +114,15 @@ export class ProductCategory extends React.Component<props, state> {
             window !== undefined ? () => window().document.body : undefined;
 
         const items = this.props.category.items.map((item: Item) => {
+            const classNames =
+                classes.listItem +
+                " " +
+                (item === this.state.currentItem ? classes.listItemActive : "");
             return (
                 <ListItem
                     button
                     key={`product-category-item-${item.name}`}
-                    className={classes.listItem}
+                    className={classNames}
                     onClick={() => this.updateItem(item)}
                 >
                     <ListItemAvatar>
