@@ -143,7 +143,7 @@ export class ProductSelection extends React.Component<props, state> {
         this.openProductCategories[category].forEach((value) => value());
     }
 
-    addProductCategory(
+    addProductCategoryHandlers(
         categoryName: string,
         openSubmenu: () => any,
         closeSubmenu: () => any
@@ -168,7 +168,7 @@ export class ProductSelection extends React.Component<props, state> {
                     openSubmenu: () => any,
                     closeSubmenu: () => any
                 ) => {
-                    this.addProductCategory(
+                    this.addProductCategoryHandlers(
                         val.name,
                         openSubmenu,
                         closeSubmenu
