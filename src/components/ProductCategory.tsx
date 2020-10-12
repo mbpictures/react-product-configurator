@@ -14,6 +14,7 @@ import Divider from "@material-ui/core/Divider";
 import List from "@material-ui/core/List";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import { Thumbnail } from "./Thumbnail";
+import mainStyle from "../styles/Main.scss";
 
 interface props {
     category: Category;
@@ -148,7 +149,9 @@ export class ProductCategory extends React.Component<props, state> {
                     {this.props.category.name}
                 </div>
                 <Divider />
-                <List>{items}</List>
+                <List className={mainStyle["list-padding-overwrite"]}>
+                    {items}
+                </List>
             </div>
         );
 

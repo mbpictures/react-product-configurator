@@ -9,6 +9,7 @@ import IconButton from "@material-ui/core/IconButton";
 import List from "@material-ui/core/List";
 import ProductCategory from "./ProductCategory";
 import PriceBuy from "./PriceBuy";
+import mainStyle from "../styles/Main.scss";
 
 const drawerWidth = 400;
 
@@ -198,7 +199,9 @@ export class ProductSelection extends React.Component<props, state> {
                 <div className={classes.holder}>
                     <div className={classes.outerDrawerContent}>
                         <div className={classes.drawerContent}>
-                            <List className={classes.drawerItems}>
+                            <List
+                                className={`${classes.drawerItems} ${mainStyle["list-padding-overwrite"]}`}
+                            >
                                 {categories}
                             </List>
                             <PriceBuy
