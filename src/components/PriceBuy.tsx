@@ -7,6 +7,7 @@ interface props {
     price: number;
     onBuy: () => any;
     classes: any;
+    style?: React.CSSProperties;
 }
 
 const useStyles = (theme: Theme) => ({
@@ -41,7 +42,7 @@ class PriceBuy extends React.Component<props> {
         const { classes } = this.props;
         const buyBoxClasses = style["price-box"] + " " + classes.box;
         return (
-            <div className={buyBoxClasses}>
+            <div className={buyBoxClasses} style={this.props.style}>
                 <div className={style.price}>
                     <span>Price:</span>
                     <span
