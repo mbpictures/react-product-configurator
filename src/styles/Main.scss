@@ -14,3 +14,34 @@
     padding-top: 0!important;
     padding-bottom: 0!important;
 }
+
+.outer-drawer-content {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+}
+
+.drawer-content {
+    box-sizing: border-box;
+    align-self: center;
+    display: flex;
+    flex-flow: column;
+    height: 100px;
+    flex: 1;
+    min-height: 100%;
+}
+
+.drawer-items {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.drawer-main {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+}
+
+.drawer-content-holder {
+    flex-grow: 1;
+}

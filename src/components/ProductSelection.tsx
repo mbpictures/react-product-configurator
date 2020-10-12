@@ -60,32 +60,6 @@ const useStyles = (theme: Theme) =>
             boxShadow: "-3px 0px 29px 6px rgba(0,0,0,0.35)",
             overflowX: "hidden",
         },
-        holder: {
-            flexGrow: 1,
-        },
-        outerDrawerContent: {
-            display: "flex",
-            height: "100%",
-            justifyContent: "center",
-        },
-        drawerContent: {
-            boxSizing: "border-box",
-            alignSelf: "center",
-            display: "flex",
-            flexFlow: "column",
-            height: "100px", // value is not relevant, it just enables scrolling of the list
-            flex: "1", // expand elements horizontally
-            minHeight: "100%", // ensure the usage of the full height
-        },
-        drawerItems: {
-            flex: "1",
-            overflowY: "auto",
-        },
-        drawerMain: {
-            display: "flex",
-            height: "100%",
-            flexDirection: "column",
-        },
     });
 
 interface props {
@@ -185,7 +159,7 @@ export class ProductSelection extends React.Component<props, state> {
         ));
 
         const drawer = (
-            <div className={classes.drawerMain}>
+            <div className={mainStyle["drawer-main"]}>
                 <div className={classes.drawerHeader}>
                     <IconButton
                         onClick={this.handleDrawerClose}
@@ -196,11 +170,11 @@ export class ProductSelection extends React.Component<props, state> {
                     {this.props.name}
                 </div>
                 <Divider />
-                <div className={classes.holder}>
-                    <div className={classes.outerDrawerContent}>
-                        <div className={classes.drawerContent}>
+                <div className={mainStyle["drawer-content-holder"]}>
+                    <div className={mainStyle["outer-drawer-content"]}>
+                        <div className={mainStyle["drawer-content"]}>
                             <List
-                                className={`${classes.drawerItems} ${mainStyle["list-padding-overwrite"]}`}
+                                className={`${mainStyle["drawer-items"]} ${mainStyle["list-padding-overwrite"]}`}
                             >
                                 {categories}
                             </List>
