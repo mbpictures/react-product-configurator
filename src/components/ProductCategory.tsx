@@ -15,6 +15,7 @@ import List from "@material-ui/core/List";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import { Thumbnail } from "./Thumbnail";
 import mainStyle from "../styles/Main.scss";
+import PriceBuy from "./PriceBuy";
 
 interface props {
     category: Category;
@@ -138,7 +139,7 @@ export class ProductCategory extends React.Component<props, state> {
         });
 
         const drawer = (
-            <div>
+            <div className={mainStyle["drawer-main"]}>
                 <div className={classes.drawerHeader}>
                     <IconButton
                         onClick={this.closeSubmenu}
@@ -149,9 +150,25 @@ export class ProductCategory extends React.Component<props, state> {
                     {this.props.category.name}
                 </div>
                 <Divider />
-                <List className={mainStyle["list-padding-overwrite"]}>
-                    {items}
-                </List>
+                <div className={mainStyle["drawer-content-holder"]}>
+                    <div className={mainStyle["outer-drawer-content"]}>
+                        <div className={mainStyle["drawer-content"]}>
+                            <List
+                                className={`${mainStyle["drawer-items"]} ${mainStyle["list-padding-overwrite"]}`}
+                            >
+                                {items}
+                            </List>
+                            {/* Placeholder component so items get scroll able */}
+                            <PriceBuy
+                                price={0}
+                                onBuy={() => {}}
+                                style={{
+                                    opacity: 0,
+                                }}
+                            />
+                        </div>
+                    </div>
+                </div>
             </div>
         );
 
