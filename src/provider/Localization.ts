@@ -47,6 +47,7 @@ export class LocalizationProvider {
 
     private constructor() {
         this._localizedStrings = new LocalizedStrings(DefaultLocalization);
+        this._language = this.language;
     }
 
     // MAIN part
@@ -54,6 +55,7 @@ export class LocalizationProvider {
 
     private _onLanguageChanged: ((newLanguage: string) => any)[] = [];
     localizeItems: boolean = false;
+    private _language: string;
 
     get localizedStrings(): Record<string, string> & LocalizedStringsMethods {
         return this._localizedStrings;
@@ -72,6 +74,7 @@ export class LocalizationProvider {
             Record<string, string>
         > = this.mergeObjects(DefaultLocalization, newTranslations);
         this._localizedStrings = new LocalizedStrings(translationObject);
+        this._localizedStrings.setLanguage(this._language);
     }
 
     // see: https://gist.github.com/ahtcx/0cd94e62691f539160b32ecda18af3d6
@@ -115,6 +118,7 @@ export class LocalizationProvider {
     }
 
     set language(languageKey: string) {
+        this._language = languageKey;
         this._localizedStrings.setLanguage(languageKey);
         this.invokeLanguageChangedCallbacks(languageKey);
     }
