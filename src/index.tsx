@@ -8,6 +8,10 @@ import { LoadingScreen } from "./components/LoadingScreen";
 import { MuiThemeProvider, Theme } from "@material-ui/core";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { lightTheme, darkTheme } from "./provider/Theme";
+import {
+    LocalizationProvider,
+    LocalizationStrings,
+} from "./provider/Localization";
 
 export type ItemConfiguration = { [keys: string]: Item };
 export type BuyCallback = (items: ItemConfiguration) => any;
@@ -16,6 +20,7 @@ export type AbortCallback = () => any;
 export type PrivacyCallback = () => any;
 
 export { ProductPreview } from "./components/preview";
+export * from "./provider/Localization";
 
 export interface Item {
     name: string;
@@ -46,6 +51,7 @@ interface props {
     showLoadingScreen?: boolean;
     categories: Category[];
     theme?: "dark" | "light" | Theme;
+    translations?: Record<string, LocalizationStrings>;
 }
 
 interface state {
@@ -98,6 +104,13 @@ export class ProductConfigurator extends React.Component<props, state> {
                 });
             });
         }
+
+        // set custom translations
+        LocalizationProvider.Instance.translations =
+            this.props.translations || {};
+        LocalizationProvider.Instance.setOnLanguageChanged(() =>
+            this.setState({})
+        );
     }
 
     handleImageLoaded() {

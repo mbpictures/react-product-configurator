@@ -8,6 +8,7 @@ import ButtonGroup from "@material-ui/core/ButtonGroup";
 import { ResponsiveDialog } from "./ResponsiveDialog";
 import CloseIcon from "@material-ui/icons/Close";
 import { SummaryList } from "./SummaryList";
+import { LocalizationProvider } from "../provider/Localization";
 
 interface props {
     currentSelection: ItemConfiguration;
@@ -92,7 +93,11 @@ export class SummaryDialog extends React.Component<props, state> {
                         </div>
                     </Hidden>
                     <div className={style.description}>
-                        <h1 style={{ margin: "0" }}>Summary</h1>
+                        <h1 style={{ margin: "0" }}>
+                            {LocalizationProvider.Instance.getTranslation(
+                                "summary"
+                            )}
+                        </h1>
                         <Hidden lgUp>
                             <div className={style["product-preview"]}>
                                 <ProductPreview
@@ -112,7 +117,11 @@ export class SummaryDialog extends React.Component<props, state> {
                             style={{ marginTop: "0" }}
                         >
                             <span>
-                                <h3 className={style["total-price"]}>Total</h3>
+                                <h3 className={style["total-price"]}>
+                                    {LocalizationProvider.Instance.getTranslation(
+                                        "total"
+                                    )}
+                                </h3>
                             </span>
                             <span>
                                 <h3 className={style["total-price"]}>
@@ -126,24 +135,34 @@ export class SummaryDialog extends React.Component<props, state> {
                                 variant="outlined"
                                 color="secondary"
                             >
-                                Cancel
+                                {LocalizationProvider.Instance.getTranslation(
+                                    "cancel"
+                                )}
                             </Button>
                             <Button
                                 onClick={this.handleBuy}
                                 variant="outlined"
                                 color="primary"
                             >
-                                Confirm
+                                {LocalizationProvider.Instance.getTranslation(
+                                    "confirm"
+                                )}
                             </Button>
                         </ButtonGroup>
                         <p>
-                            With buying this product you accept our
-                            <Button
-                                color="primary"
-                                onClick={this.props.onPrivacyPolicy}
-                            >
-                                Privacy Policy
-                            </Button>
+                            {LocalizationProvider.Instance.localizedStrings.formatString(
+                                LocalizationProvider.Instance.getTranslation(
+                                    "privacyPolicyDescription"
+                                ),
+                                <Button
+                                    color="primary"
+                                    onClick={this.props.onPrivacyPolicy}
+                                >
+                                    {LocalizationProvider.Instance.getTranslation(
+                                        "privacyPolicyButton"
+                                    )}
+                                </Button>
+                            )}
                         </p>
                     </div>
                 </DialogContent>
