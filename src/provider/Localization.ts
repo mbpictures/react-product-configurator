@@ -68,7 +68,7 @@ export class LocalizationProvider {
         const translationObject: Record<
             string,
             LocalizationStrings
-        > = this.mergeObjects(newTranslations, DefaultLocalization);
+        > = this.mergeObjects(DefaultLocalization, newTranslations);
         this._localizedStrings = new LocalizedStrings(translationObject);
     }
 
