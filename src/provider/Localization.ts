@@ -91,7 +91,7 @@ export class LocalizationProvider {
     }
 
     getTranslation(key: string): string {
-        if (!(key in this._localizedStrings)) return "";
+        if (!(key in this._localizedStrings)) return key;
         return this._localizedStrings[key];
     }
 
