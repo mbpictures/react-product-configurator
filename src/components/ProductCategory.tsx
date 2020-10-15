@@ -16,6 +16,7 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import { Thumbnail } from "./Thumbnail";
 import mainStyle from "../styles/Main.scss";
 import PriceBuy from "./PriceBuy";
+import { LocalizationProvider } from "../provider/Localization";
 
 interface props {
     category: Category;
@@ -133,7 +134,12 @@ export class ProductCategory extends React.Component<props, state> {
                             thumbnail={item.thumbnail}
                         />
                     </ListItemAvatar>
-                    <ListItemText primary={item.name} />
+                    <ListItemText
+                        primary={LocalizationProvider.Instance.getTranslation(
+                            item.name,
+                            true
+                        )}
+                    />
                 </ListItem>
             );
         });
@@ -185,7 +191,12 @@ export class ProductCategory extends React.Component<props, state> {
                         thumbnail={this.state.currentItem.thumbnail}
                     />
                 </ListItemAvatar>
-                <ListItemText primary={this.props.category.name} />
+                <ListItemText
+                    primary={LocalizationProvider.Instance.getTranslation(
+                        this.props.category.name,
+                        true
+                    )}
+                />
                 <Drawer
                     container={container}
                     variant="persistent"

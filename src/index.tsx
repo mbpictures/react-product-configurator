@@ -8,10 +8,7 @@ import { LoadingScreen } from "./components/LoadingScreen";
 import { MuiThemeProvider, Theme } from "@material-ui/core";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { lightTheme, darkTheme } from "./provider/Theme";
-import {
-    LocalizationProvider,
-    LocalizationStrings,
-} from "./provider/Localization";
+import { LocalizationProvider } from "./provider/Localization";
 
 export type ItemConfiguration = { [keys: string]: Item };
 export type BuyCallback = (items: ItemConfiguration) => any;
@@ -51,7 +48,8 @@ interface props {
     showLoadingScreen?: boolean;
     categories: Category[];
     theme?: "dark" | "light" | Theme;
-    translations?: Record<string, LocalizationStrings>;
+    translations?: Record<string, Record<string, string>>;
+    localizeItems?: boolean;
 }
 
 interface state {
@@ -111,6 +109,8 @@ export class ProductConfigurator extends React.Component<props, state> {
         LocalizationProvider.Instance.setOnLanguageChanged(() =>
             this.setState({})
         );
+        LocalizationProvider.Instance.localizeItems =
+            this.props.localizeItems ?? false;
     }
 
     handleImageLoaded() {

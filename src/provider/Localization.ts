@@ -50,10 +50,12 @@ export class LocalizationProvider {
     }
 
     // MAIN part
-    private _localizedStrings: LocalizationStrings & LocalizedStringsMethods;
-    private _onLanguageChanged: ((newLanguage: string) => any)[] = [];
+    private _localizedStrings: any & LocalizedStringsMethods;
 
-    get localizedStrings(): LocalizationStrings & LocalizedStringsMethods {
+    private _onLanguageChanged: ((newLanguage: string) => any)[] = [];
+    localizeItems: boolean = false;
+
+    get localizedStrings(): Record<string, string> & LocalizedStringsMethods {
         return this._localizedStrings;
     }
 
@@ -64,10 +66,10 @@ export class LocalizationProvider {
         this._onLanguageChanged.push(callback.bind(context));
     }
 
-    set translations(newTranslations: Record<string, LocalizationStrings>) {
+    set translations(newTranslations: Record<string, Record<string, string>>) {
         const translationObject: Record<
             string,
-            LocalizationStrings
+            Record<string, string>
         > = this.mergeObjects(DefaultLocalization, newTranslations);
         this._localizedStrings = new LocalizedStrings(translationObject);
     }
@@ -76,7 +78,7 @@ export class LocalizationProvider {
     private mergeObjects(
         target: any,
         source: any
-    ): Record<string, LocalizationStrings> {
+    ): Record<string, Record<string, string>> {
         for (const key of Object.keys(source)) {
             if (source[key] instanceof Object)
                 Object.assign(
@@ -90,8 +92,9 @@ export class LocalizationProvider {
         return target;
     }
 
-    getTranslation(key: string): string {
-        if (!(key in this._localizedStrings)) return key;
+    getTranslation(key: string, isItem?: boolean): string {
+        if (!(key in this._localizedStrings) || (isItem && !this.localizeItems))
+            return key;
         return this._localizedStrings[key];
     }
 
