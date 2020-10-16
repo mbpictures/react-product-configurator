@@ -47,6 +47,26 @@ class App extends React.Component<any, state> {
     }
 
     render() {
+        const customTranslation = {
+            de: {
+                Case: "Gehäuse",
+                Belt: "Gurt",
+                Handle: "Griff",
+                Default: "Standard",
+                Red: "Rot",
+                Blue: "Blau",
+                Green: "Grün"
+            },
+            en: {
+                Case: "Case",
+                Belt: "Belt",
+                Handle: "Handle",
+                Default: "Default",
+                Red: "Red",
+                Blue: "Blue",
+                Green: "Green"
+            }
+        };
         let cats: Category[] = [
             {
                 name: "Case",
@@ -169,7 +189,10 @@ class App extends React.Component<any, state> {
             displayBackButton
             showLoadingScreen
             theme="light"
-            onBack={() => console.log("CALLBACK: onBack")} />;
+            onBack={() => console.log("CALLBACK: onBack")}
+            localizeItems
+            translations={customTranslation}
+            displayLanguageDropdown />;
     }
 }
 

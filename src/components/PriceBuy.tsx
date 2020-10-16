@@ -2,6 +2,7 @@ import React from "react";
 
 import style from "../styles/Price.scss";
 import { Button, Theme, withStyles } from "@material-ui/core";
+import { LocalizationProvider } from "../provider/Localization";
 
 interface props {
     price: number;
@@ -44,7 +45,9 @@ class PriceBuy extends React.Component<props> {
         return (
             <div className={buyBoxClasses} style={this.props.style}>
                 <div className={style.price}>
-                    <span>Price:</span>
+                    <span>
+                        {LocalizationProvider.Instance.getTranslation("price")}:
+                    </span>
                     <span
                         ref={this.priceElem}
                         onAnimationEnd={this.removeAnimationClass}
@@ -59,7 +62,7 @@ class PriceBuy extends React.Component<props> {
                     size="large"
                     onClick={this.props.onBuy}
                 >
-                    Buy
+                    {LocalizationProvider.Instance.getTranslation("buy")}
                 </Button>
             </div>
         );

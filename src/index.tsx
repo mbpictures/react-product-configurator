@@ -3,11 +3,12 @@ import { ProductPreview } from "./components/preview";
 import ProductSelection from "./components/ProductSelection";
 import style from "./styles/Main.scss";
 import { SummaryDialog } from "./components/SummaryDialog";
-import { BackButton } from "./components/BackButton";
+import { MenuBox } from "./components/MenuBox";
 import { LoadingScreen } from "./components/LoadingScreen";
 import { MuiThemeProvider, Theme } from "@material-ui/core";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { lightTheme, darkTheme } from "./provider/Theme";
+import { LocalizationProvider } from "./provider/Localization";
 
 export type ItemConfiguration = { [keys: string]: Item };
 export type BuyCallback = (items: ItemConfiguration) => any;
@@ -16,6 +17,7 @@ export type AbortCallback = () => any;
 export type PrivacyCallback = () => any;
 
 export { ProductPreview } from "./components/preview";
+export * from "./provider/Localization";
 
 export interface Item {
     name: string;
@@ -39,6 +41,7 @@ interface props {
     onBack?: BackCallback;
     onBuy?: BuyCallback;
     displayBackButton?: boolean;
+    displayLanguageDropdown?: boolean;
     backButton?: React.ReactNode;
     onAbortBuy?: AbortCallback;
     onPrivacyPolicy?: PrivacyCallback;
@@ -46,6 +49,8 @@ interface props {
     showLoadingScreen?: boolean;
     categories: Category[];
     theme?: "dark" | "light" | Theme;
+    translations?: Record<string, Record<string, string>>;
+    localizeItems?: boolean;
 }
 
 interface state {
@@ -98,6 +103,15 @@ export class ProductConfigurator extends React.Component<props, state> {
                 });
             });
         }
+
+        // set custom translations
+        LocalizationProvider.Instance.translations =
+            this.props.translations || {};
+        LocalizationProvider.Instance.setOnLanguageChanged(() =>
+            this.setState({})
+        );
+        LocalizationProvider.Instance.localizeItems =
+            this.props.localizeItems ?? false;
     }
 
     handleImageLoaded() {
@@ -139,10 +153,11 @@ export class ProductConfigurator extends React.Component<props, state> {
                 <MuiThemeProvider theme={theme}>
                     <CssBaseline />
                     <LoadingScreen visible={loadingScreenVisible} />
-                    <BackButton
+                    <MenuBox
                         backButton={this.props.backButton}
                         displayBackButton={this.props.displayBackButton}
                         onBack={this.props.onBack}
+                        displayLanguageDropdown={this.props.displayLanguageDropdown}
                     />
                     <ProductPreview
                         currentSelection={this.state.currentSelection}
