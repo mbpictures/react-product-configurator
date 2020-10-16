@@ -42,7 +42,6 @@ export class MenuBox extends React.Component<props, state> {
     }
 
     render() {
-        if (!this.props.displayBackButton) return null;
         const buttonIcon = this.props.backButton ?? <ChevronLeftIcon />;
 
         const languages = LocalizationProvider.Instance.availableLanguages.map(
@@ -62,8 +61,9 @@ export class MenuBox extends React.Component<props, state> {
             }
         );
 
-        return (
-            <div className={style.root}>
+        let backButton = null;
+        if (this.props.displayBackButton) {
+            backButton = (
                 <IconButton
                     color="inherit"
                     aria-label="open drawer"
@@ -73,6 +73,12 @@ export class MenuBox extends React.Component<props, state> {
                 >
                     {buttonIcon}
                 </IconButton>
+            );
+        }
+
+        return (
+            <div className={style.root}>
+                {backButton}
                 <IconButton
                     color="inherit"
                     aria-label="open drawer"
