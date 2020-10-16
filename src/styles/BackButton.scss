@@ -5,9 +5,11 @@
     left: 0;
     z-index: 100!important;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 15px;
 
     .back-button {
-        left: 12px;
         top: 0;
         border-radius: 0!important;
     }
