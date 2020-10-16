@@ -9,7 +9,7 @@ interface props {
     displayBackButton?: boolean;
 }
 
-export class BackButton extends React.Component<props, any> {
+export class MenuBox extends React.Component<props, any> {
     render() {
         if (!this.props.displayBackButton) return null;
         const buttonIcon = this.props.backButton ?? <ChevronLeftIcon />;

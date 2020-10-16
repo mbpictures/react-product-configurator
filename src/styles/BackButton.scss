@@ -1,10 +1,14 @@
 .root {
     display: flex;
+    position: absolute!important;
+    top: 0;
+    left: 0;
+    z-index: 100!important;
+    flex-direction: column;
+
     .back-button {
-        position: absolute!important;
         left: 12px;
         top: 0;
         border-radius: 0!important;
-        z-index: 100!important;
     }
 }

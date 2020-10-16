@@ -3,7 +3,7 @@ import { ProductPreview } from "./components/preview";
 import ProductSelection from "./components/ProductSelection";
 import style from "./styles/Main.scss";
 import { SummaryDialog } from "./components/SummaryDialog";
-import { BackButton } from "./components/BackButton";
+import { MenuBox } from "./components/MenuBox";
 import { LoadingScreen } from "./components/LoadingScreen";
 import { MuiThemeProvider, Theme } from "@material-ui/core";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -152,7 +152,7 @@ export class ProductConfigurator extends React.Component<props, state> {
                 <MuiThemeProvider theme={theme}>
                     <CssBaseline />
                     <LoadingScreen visible={loadingScreenVisible} />
-                    <BackButton
+                    <MenuBox
                         backButton={this.props.backButton}
                         displayBackButton={this.props.displayBackButton}
                         onBack={this.props.onBack}
