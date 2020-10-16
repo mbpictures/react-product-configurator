@@ -9,6 +9,7 @@ interface props {
     onBack?: () => any;
     backButton?: React.ReactNode;
     displayBackButton?: boolean;
+    displayLanguageDropdown?: boolean;
 }
 
 interface state {
@@ -44,23 +45,6 @@ export class MenuBox extends React.Component<props, state> {
     render() {
         const buttonIcon = this.props.backButton ?? <ChevronLeftIcon />;
 
-        const languages = LocalizationProvider.Instance.availableLanguages.map(
-            (value) => {
-                return (
-                    <MenuItem
-                        key={value}
-                        onClick={() => this.handleLanguageChange(value)}
-                    >
-                        <FlagIcon
-                            code={LocalizationProvider.Instance.getFlagCode(
-                                value
-                            )}
-                        />
-                    </MenuItem>
-                );
-            }
-        );
-
         let backButton = null;
         if (this.props.displayBackButton) {
             backButton = (
@@ -75,10 +59,27 @@ export class MenuBox extends React.Component<props, state> {
                 </IconButton>
             );
         }
+        let languageDropdown = null;
+        let languages = null;
+        if (this.props.displayLanguageDropdown) {
+            languages = LocalizationProvider.Instance.availableLanguages.map(
+                (value) => {
+                    return (
+                        <MenuItem
+                            key={value}
+                            onClick={() => this.handleLanguageChange(value)}
+                        >
+                            <FlagIcon
+                                code={LocalizationProvider.Instance.getFlagCode(
+                                    value
+                                )}
+                            />
+                        </MenuItem>
+                    );
+                }
+            );
 
-        return (
-            <div className={style.root}>
-                {backButton}
+            languageDropdown = (
                 <IconButton
                     color="inherit"
                     aria-label="open drawer"
@@ -92,6 +93,13 @@ export class MenuBox extends React.Component<props, state> {
                         )}
                     />
                 </IconButton>
+            );
+        }
+
+        return (
+            <div className={style.root}>
+                {backButton}
+                {languageDropdown}
                 <Menu
                     anchorEl={this.state.languageMenuAnchor}
                     open={this.state.languageMenuAnchor !== null}

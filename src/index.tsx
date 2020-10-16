@@ -41,6 +41,7 @@ interface props {
     onBack?: BackCallback;
     onBuy?: BuyCallback;
     displayBackButton?: boolean;
+    displayLanguageDropdown?: boolean;
     backButton?: React.ReactNode;
     onAbortBuy?: AbortCallback;
     onPrivacyPolicy?: PrivacyCallback;
@@ -156,6 +157,7 @@ export class ProductConfigurator extends React.Component<props, state> {
                         backButton={this.props.backButton}
                         displayBackButton={this.props.displayBackButton}
                         onBack={this.props.onBack}
+                        displayLanguageDropdown={this.props.displayLanguageDropdown}
                     />
                     <ProductPreview
                         currentSelection={this.state.currentSelection}
