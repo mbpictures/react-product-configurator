@@ -35,6 +35,11 @@ export const DefaultLocalization: Record<string, LocalizationStrings> = {
     },
 };
 
+export const DefaultFlagMapping: Record<string, string> = {
+    en: "gb",
+    de: "de",
+};
+
 export class LocalizationProvider {
     // singleton members
     private static _instance?: LocalizationProvider = undefined;
@@ -48,6 +53,7 @@ export class LocalizationProvider {
     private constructor() {
         this._localizedStrings = new LocalizedStrings(DefaultLocalization);
         this._language = this.language;
+        this._flagMapping = DefaultFlagMapping;
     }
 
     // MAIN part
@@ -56,9 +62,19 @@ export class LocalizationProvider {
     private _onLanguageChanged: ((newLanguage: string) => any)[] = [];
     localizeItems: boolean = false;
     private _language: string;
+    private _flagMapping: Record<string, string>;
 
     get localizedStrings(): Record<string, string> & LocalizedStringsMethods {
         return this._localizedStrings;
+    }
+
+    set flagMapping(flagMapping: Record<string, string>) {
+        this._flagMapping = flagMapping;
+    }
+
+    getFlagCode(language: string): string {
+        if (!(language in this._flagMapping)) return language;
+        return this._flagMapping[language];
     }
 
     setOnLanguageChanged(
