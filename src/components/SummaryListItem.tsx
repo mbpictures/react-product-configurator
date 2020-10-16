@@ -5,6 +5,7 @@ import mainStyle from "../styles/Main.scss";
 import { Thumbnail } from "./Thumbnail";
 import { EditCallback } from "./SummaryList";
 import EditIcon from "@material-ui/icons/Edit";
+import { LocalizationProvider } from "../provider/Localization";
 
 interface props {
     category: string;
@@ -55,9 +56,19 @@ export class SummaryListItem extends React.Component<props, any> {
                         }}
                     >
                         <span>
-                            <strong>{this.props.category}</strong>
+                            <strong>
+                                {LocalizationProvider.Instance.getTranslation(
+                                    this.props.category,
+                                    true
+                                )}
+                            </strong>
                         </span>
-                        <span>{this.props.item.name}</span>
+                        <span>
+                            {LocalizationProvider.Instance.getTranslation(
+                                this.props.item.name,
+                                true
+                            )}
+                        </span>
                     </div>
                 </div>
                 <div style={{ display: "flex", alignItems: "center" }}>
