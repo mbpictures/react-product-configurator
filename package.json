@@ -1,6 +1,6 @@
 {
   "name": "react-product-configurator",
-  "version": "1.3.2",
+  "version": "2.0.0",
   "description": "Embed an easy to use, lightweight product configurator in your react app",
   "author": "Marius Butz",
   "license": "MIT",
