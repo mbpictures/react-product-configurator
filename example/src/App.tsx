@@ -191,7 +191,8 @@ class App extends React.Component<any, state> {
             theme="light"
             onBack={() => console.log("CALLBACK: onBack")}
             localizeItems
-            translations={customTranslation} />;
+            translations={customTranslation}
+            displayLanguageDropdown />;
     }
 }
 
