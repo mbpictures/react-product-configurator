@@ -55,7 +55,7 @@ The ProductConfigurator Components comes with three callbacks: onBuy, onAbortBuy
 * ```showLoadingScreen: boolean (optional)```: Show loading screen while all images are preloading. This option will only work in combination with "preloadImages", otherwise no loading screen will be shown.
 * ```theme: "light" | "dark" | Theme (optional)```: Customize the appearance by either a predefined or custom theme. There are currently two predefined themes ("light" and "dark") available. You can also use a custom generated mui theme.
 * ```translation: Record<string, Record<string, string>> (optional)```: Override or add custom translations with this property. If you want to translate your categories or items, use the name of them as the key of the translation object. To add more languages, simply add them simultaneously with a two letter language code as the key. The object has to be in this format:
-  ```JSON
+  ```JavaScript
   {
     de: {
         KEY: "Übersetzung",
