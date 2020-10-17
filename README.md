@@ -3,7 +3,10 @@
 [![NPM](https://img.shields.io/npm/v/react-product-configurator.svg)](https://www.npmjs.com/package/react-product-configurator) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![DeepScan grade](https://deepscan.io/api/teams/10967/projects/14096/branches/253069/badge/grade.svg?token=a1fa0980263b30233c0ddf1e9c3ed778290db2ee)](https://deepscan.io/dashboard#view=project&tid=10967&pid=14096&bid=253069)
 
 Embed an easy to use, lightweight and responsive product configurator in your react app.
-[Live Demo](http://projects.marius-butz.de/react-product-configurator) [example app](example/)
+
+[Live Demo](http://projects.marius-butz.de/react-product-configurator)
+
+[Example app](example/)
 ## Install
 
 ```bash
