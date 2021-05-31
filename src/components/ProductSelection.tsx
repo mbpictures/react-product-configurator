@@ -7,7 +7,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import IconButton from "@material-ui/core/IconButton";
 import List from "@material-ui/core/List";
-import ProductCategory from "./ProductCategory";
+import ProductCategory, { ItemChangeCallback } from "./ProductCategory";
 import PriceBuy from "./PriceBuy";
 import mainStyle from "../styles/Main.scss";
 
@@ -64,7 +64,7 @@ const useStyles = (theme: Theme) =>
 
 interface props {
     categories: Category[];
-    onChangeSelection: (categoryName: string, item: Item) => any;
+    onChangeSelection: ItemChangeCallback;
     name: string;
     price: number;
     onBuy: () => any;

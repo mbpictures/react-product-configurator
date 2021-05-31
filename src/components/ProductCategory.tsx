@@ -18,10 +18,12 @@ import mainStyle from "../styles/Main.scss";
 import PriceBuy from "./PriceBuy";
 import { LocalizationProvider } from "../provider/Localization";
 
+export type ItemChangeCallback = (category: string, item: Item) => any;
+
 interface props {
     category: Category;
     drawerWidth: number;
-    onItemChange: (category: string, item: Item) => any;
+    onItemChange: ItemChangeCallback;
     window?: () => Window;
     classes: any;
     setSubmenuHandlers: (

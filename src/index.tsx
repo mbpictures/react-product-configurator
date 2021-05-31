@@ -9,6 +9,7 @@ import { MuiThemeProvider, Theme } from "@material-ui/core";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { lightTheme, darkTheme } from "./provider/Theme";
 import { LocalizationProvider } from "./provider/Localization";
+import { ItemChangeCallback } from "./components/ProductCategory";
 
 export type ItemConfiguration = { [keys: string]: Item };
 export type BuyCallback = (items: ItemConfiguration) => any;
@@ -51,6 +52,7 @@ interface props {
     theme?: "dark" | "light" | Theme;
     translations?: Record<string, Record<string, string>>;
     localizeItems?: boolean;
+    onItemChange?: ItemChangeCallback;
 }
 
 interface state {
@@ -123,6 +125,7 @@ export class ProductConfigurator extends React.Component<props, state> {
         const state = this.state;
         state.currentSelection[category] = item;
         this.setState(state);
+        if (this.props.onItemChange) this.props.onItemChange(category, item);
     }
 
     handleBuyClick(): void {
@@ -157,7 +160,9 @@ export class ProductConfigurator extends React.Component<props, state> {
                         backButton={this.props.backButton}
                         displayBackButton={this.props.displayBackButton}
                         onBack={this.props.onBack}
-                        displayLanguageDropdown={this.props.displayLanguageDropdown}
+                        displayLanguageDropdown={
+                            this.props.displayLanguageDropdown
+                        }
                     />
                     <ProductPreview
                         currentSelection={this.state.currentSelection}
