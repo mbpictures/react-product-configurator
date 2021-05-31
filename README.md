@@ -47,6 +47,7 @@ The ProductConfigurator Components comes with three callbacks: onBuy, onAbortBuy
 * ```onAbortBuy() => any (optional)```: Called when the user cancels the buy process in the summary dialog either by pressing the "Cancel"-button or by clicking outside of the popup.
 * ```onBack() => any (optional)```: Called when the user clicks the "back"-Button. When the "back"-button isn't enabled, this callback won't be fired.
 * ```onPrivacyPolicy() => any (optional)```: Called when the user clicked the "privacy policy"-button in the summary dialog.
+* ```onItemChange(category: string, item: Item) => any```: Called after the user changed his current item selection.
 
 ### Properties
 * ```name: string```: Product name (displayed in sidebar)
