@@ -192,7 +192,9 @@ class App extends React.Component<any, state> {
             onBack={() => console.log("CALLBACK: onBack")}
             localizeItems
             translations={customTranslation}
-            displayLanguageDropdown />;
+            displayLanguageDropdown
+            onItemChange={(category, item) => console.log(`CALLBACK: onItemChange; Category: ${category}, item: ${JSON.stringify(item)}`)}
+        />;
     }
 }
 
